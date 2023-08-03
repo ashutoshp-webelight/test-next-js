@@ -1,0 +1,39 @@
+Arguments: 
+  /home/ash09/.nvm/versions/node/v16.17.0/bin/node /usr/share/yarn/bin/yarn.js run build
+
+PATH: 
+  /home/ash09/.nvm/versions/node/v16.17.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Microsoft SDKs/Azure/CLI2/wbin:/mnt/c/Python311/Scripts/:/mnt/c/Python311/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/minikube:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/devop/AppData/Roaming/nvm:/mnt/c/Program Files/nodejs:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/Microsoft SQL Server/160/DTS/Binn/:/mnt/c/Program Files/Azure Data Studio/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/WINDOWS/system32/config/systemprofile/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/devop/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/devop/AppData/Roaming/nvm:/mnt/c/Program Files/nodejs:/mnt/c/Users/devop/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/devop/AppData/Local/Programs/Lens/resources/cli/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /var/www/tappstr/apps/tappuiadmin/package.json: Unexpected string in JSON at position 92
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "tappuiadmin",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+    "scripts": {
+      "build": "webpack"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

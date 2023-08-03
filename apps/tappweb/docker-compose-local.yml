@@ -1,0 +1,46 @@
+services:
+  app:
+    image: "python:3.11"
+    container_name: "naagmani-app-local"
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    volumes:
+      - ./src:/code:ro
+      - ./.env:/code/.env:ro
+    working_dir: /code
+    ports:
+      - "8000:80"
+    networks:
+      - default
+    entrypoint: [ "python", "main.py run 0.0.0.0 80 --debug" ]
+
+  postgresql:
+    image: "postgres:alpine"
+    container_name: "naagmani-postgresql"
+    env_file:
+      - .env
+    environment:
+      - "POSTGRES_USER=${DATABASE_USER}"
+      - "POSTGRES_PASSWORD=${DATABASE_PASSWORD}"
+      - "POSTGRES_DB=${DATABASE_NAME}"
+    volumes:
+      - postgresql:/data/postgres
+    ports:
+      - "8001:5432"
+    networks:
+      - default
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DATABASE_USER} -d ${DATABASE_NAME} -h localhost -p 5432" ]
+      start_period: 5s
+      interval: 10s
+      timeout: 5s
+
+networks:
+  default:
+    name: "naagmani-coach"
+    driver: bridge
+
+volumes:
+  postgresql:
+    name: "naagmani-postgresql"

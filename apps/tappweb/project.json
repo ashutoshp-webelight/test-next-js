@@ -1,0 +1,73 @@
+{
+  "name": "tappweb",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/tappweb/app",
+  "targets": {
+    "serve": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": ["poetry env use 3.11.4 && poetry run python src/main.py run 0.0.0.0 5001"],
+        "cwd": "apps/tappweb"
+      }
+    },
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/tappweb"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "apps/tappweb/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["{workspaceRoot}/reports/apps/tappweb/pylint.txt"],
+      "options": {
+        "outputFile": "reports/apps/tappweb/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/apps/tappweb/unittests",
+        "{workspaceRoot}/coverage/apps/tappweb"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "apps/tappweb"
+      }
+    }
+  },
+  "tags": []
+}

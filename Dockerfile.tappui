@@ -1,0 +1,24 @@
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
+
+COPY /apps/tappui/. /app
+
+RUN yarn install --frozen-lockfile
+
+RUN yarn run build
+
+FROM node:18-alpine
+
+#ARG ENV=$ENV
+
+COPY --from=builder /app/.next /
+
+
+HEALTHCHECK --interval=10s --timeout=3s --start-period=10s \
+    CMD curl --fail http://localhost/ || exit 1
+
+CMD ["yarn", "run", "start"]
